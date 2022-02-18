@@ -1,0 +1,10 @@
+
+ 23: 38 : 25 : LogManager startUp()
+ 23: 38 : 25 : WorldManager startUp()
+ 23: 38 : 25 : Background color not set
+ 23: 38 : 26 : Font accepted
+ 23: 38 : 26 : DisplayManager started
+ 23: 38 : 26 : SRM::startUp(): Successfully started.
+ 23: 38 : 26 : InputManager starting up
+ 23: 38 : 26 : Box width 80.000000 height 24.000000
+ 23: 38 : 26 : GameManager run()
