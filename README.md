@@ -23,11 +23,10 @@ The proj2-Donnelly folder contains:
 ## How to compile:
 To compile and run:
 
-0) Extract contents of the folder
-
-1) Build proj2-Donnelly.sln on Visual Studio (F7)
-
-2) Compile (Ctrl+F7) and run the solution (F5)
+1) Download contents of the folder
+2) Extract SFML zip in repository
+3) Build proj2-Donnelly.sln on Visual Studio (F7)
+4) Compile (Ctrl+F7) and run the solution (F5)
 	- Tests will run in the same solution
 
 --------------------------------------------------------------------
