@@ -1,13 +1,13 @@
 # ASCII-Game-Engine
 
-Tate Donnelly
-Tdonnelly
-2022
+Made by Tate Donnelly
+
+January - February 2022
 
 Platform: Windows
 
 --------------------------------------------------------------------
-##Code structure:
+## Code structure:
 The proj2-Donnelly folder contains:
 	- .cpp files and .h files (including a test files)
 	- Visual Studio solution files (Microsoft Windows)
@@ -20,7 +20,7 @@ The proj2-Donnelly folder contains:
 	- A logfile (dragonfly)
 --------------------------------------------------------------------
 
-##How to compile:
+## How to compile:
 To compile and run:
 
 0) Extract contents of the folder
@@ -31,7 +31,7 @@ To compile and run:
 	- Tests will run in the same solution
 
 --------------------------------------------------------------------
-##Additional notes:
+## Additional notes:
 
 Due to the nature of some tests and my engine, certain tests could not be run in doTests(). Instead, to run those tests, you will need to
 set a test's corresponding boolean to true in the game.cpp file and compile the program as described in "How to compile". Only one 
