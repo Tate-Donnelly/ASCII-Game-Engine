@@ -10,6 +10,7 @@ namespace df {
         setTag(new_tag);
         setValue(new_value);
         setDelta(new_delta);
+        setType(VIEW_EVENT);
     }
 
     // Set tag to new tag.
