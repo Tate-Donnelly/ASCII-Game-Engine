@@ -6,23 +6,23 @@
 #include "utillity.h"
 #include <iostream>
 namespace df {
-	// Construct ViewObject. 
+    // Construct ViewObject. 
 // Object settings: SPECTRAL, max altitude.
 // ViewObject defaults: border, top_center, default color, draw_value.
-	ViewObject::ViewObject() {
+    ViewObject::ViewObject() {
 
-		// Initialize Object attributes.
-		setSolidness(SPECTRAL);
-		setAltitude(MAX_ALTITUDE-1);
-		setType("ViewObject");
+        // Initialize Object attributes.
+        setSolidness(SPECTRAL);
+        setAltitude(MAX_ALTITUDE - 1);
+        setType("ViewObject");
 
-		// Initialize ViewObject attributes.
-		setValue(0);
-		setDrawValue();
-		setBorder(true);
-		setLocation(TOP_CENTER);
-		setColor(COLOR_DEFAULT);
-	}
+        // Initialize ViewObject attributes.
+        setValue(0);
+        setDrawValue();
+        setBorder(true);
+        setLocation(TOP_CENTER);
+        setColor(COLOR_DEFAULT);
+    }
 
     // Draw view string and value.
     int ViewObject::draw() {
@@ -31,16 +31,16 @@ namespace df {
         std::string temp_str = "";
         if (m_draw_value) {
             if (m_border) {
-                temp_str = " " + getViewString() + " ";
+                temp_str = " " + getViewString() + " " + u.toString(getValue()) + " ";
             }
             else {
-                temp_str = getViewString();
+                temp_str = getViewString() + " " + u.toString(getValue());
 
             }
         }
         else {
             if (m_border) {
-                temp_str = " " + getViewString() + " " + u.toString(m_value) + " ";
+                temp_str = " " + getViewString() + " ";
             }
             else {
                 temp_str = getViewString() + " " + u.toString(m_value);
@@ -54,7 +54,7 @@ namespace df {
         DM.drawString(pos, temp_str, CENTER_JUSTIFIED, getColor());
         LM.writeLog(0, "Position (%f,%f)", pos.getX(), pos.getY());
         if (m_border) {
-            Box b(Vector(pos.getX()-temp_str.size() * 0.5f, pos.getY() - 0), (float)temp_str.size(), 1);
+            Box b(Vector(pos.getX() - temp_str.size() * 0.5f, pos.getY() - 0), (float)temp_str.size(), 1);
             b.draw(sf::Color::Yellow, true);
         }
         return 0;
@@ -71,6 +71,7 @@ namespace df {
             // See if this event is meant for this object.
             if (p_ve->getTag() == getViewString()) {
                 if (p_ve->getDelta()) {
+                    LM.writeLog("Set to %d", getValue() + p_ve->getValue());
                     setValue(getValue() + p_ve->getValue());  // Change in value.
                 }
                 else {
@@ -87,67 +88,67 @@ namespace df {
         Vector p;
         float y_delta = 0;
 
-        LM.writeLog(0,"Get horizontal: %f", WM.getView().getHorizontal());
+        LM.writeLog(0, "Get horizontal: %f", WM.getView().getHorizontal());
         // Set new position based on location.
-        switch (new_location){
-          case TOP_LEFT:
-              p.setXY(WM.getView().getHorizontal() * 1 / 6, 1);
-              if (!getBorder()) {
-                  y_delta = -1;
-              }
-              break;
-          case TOP_CENTER:
-              p.setXY(WM.getView().getHorizontal() * 3 / 6, 1);
-              if (!getBorder()) {
-                  y_delta = -1;
-              }
-              break;
-          case TOP_RIGHT:
-              p.setXY(WM.getView().getHorizontal() * 5 / 6, 1);
-              if (!getBorder()) {
-                  y_delta = -1;
-              }
-              break;
-          case CENTER_LEFT:
-              p.setXY(WM.getView().getHorizontal() * 1 / 6, WM.getView().getVertical() * 1 / 2);
-              y_delta = 0;
-              break;
-          case CENTER_CENTER:
-              p.setXY(WM.getView().getHorizontal() * 3 / 6, WM.getView().getVertical() * 1 / 2);
-              y_delta = 0;
-              break;
-          case CENTER_RIGHT:
-              p.setXY(WM.getView().getHorizontal() * 5 / 6, WM.getView().getVertical() * 1 / 2);
-              y_delta = 0;
-              break;
-          case BOTTOM_LEFT:
-              p.setXY(WM.getView().getHorizontal() * 1 / 6, WM.getView().getVertical() - 1);
-              if (!getBorder()) {
-                  y_delta = 1;
-              }
-              break;
-          case BOTTOM_CENTER:
-              p.setXY(WM.getView().getHorizontal() * 3 / 6, WM.getView().getVertical() - 1);
-              if (!getBorder()) {
-                  y_delta = 1;
-              }
-              break;
-          case BOTTOM_RIGHT:
-              p.setXY(WM.getView().getHorizontal() * 5 / 6, WM.getView().getVertical() - 1);
-              if (!getBorder()) {
-                  y_delta = 1;
-              }
-              break;
+        switch (new_location) {
+        case TOP_LEFT:
+            p.setXY(WM.getView().getHorizontal() * 1 / 6, 1);
+            if (!getBorder()) {
+                y_delta = -1;
+            }
+            break;
+        case TOP_CENTER:
+            p.setXY(WM.getView().getHorizontal() * 3 / 6, 1);
+            if (!getBorder()) {
+                y_delta = -1;
+            }
+            break;
+        case TOP_RIGHT:
+            p.setXY(WM.getView().getHorizontal() * 5 / 6, 1);
+            if (!getBorder()) {
+                y_delta = -1;
+            }
+            break;
+        case CENTER_LEFT:
+            p.setXY(WM.getView().getHorizontal() * 1 / 6, WM.getView().getVertical() * 1 / 2);
+            y_delta = 0;
+            break;
+        case CENTER_CENTER:
+            p.setXY(WM.getView().getHorizontal() * 3 / 6, WM.getView().getVertical() * 1 / 2);
+            y_delta = 0;
+            break;
+        case CENTER_RIGHT:
+            p.setXY(WM.getView().getHorizontal() * 5 / 6, WM.getView().getVertical() * 1 / 2);
+            y_delta = 0;
+            break;
+        case BOTTOM_LEFT:
+            p.setXY(WM.getView().getHorizontal() * 1 / 6, WM.getView().getVertical() - 1);
+            if (!getBorder()) {
+                y_delta = 1;
+            }
+            break;
+        case BOTTOM_CENTER:
+            p.setXY(WM.getView().getHorizontal() * 3 / 6, WM.getView().getVertical() - 1);
+            if (!getBorder()) {
+                y_delta = 1;
+            }
+            break;
+        case BOTTOM_RIGHT:
+            p.setXY(WM.getView().getHorizontal() * 5 / 6, WM.getView().getVertical() - 1);
+            if (!getBorder()) {
+                y_delta = 1;
+            }
+            break;
         }
 
-          // Shift, as needed, based on border.
-          p.setY(p.getY() + y_delta);
+        // Shift, as needed, based on border.
+        p.setY(p.getY() + y_delta);
 
-          // Set position of object to new position.
-          setPosition(p);
-          LM.writeLog(0, "New location (%f,%f)", p.getX(), p.getY());
-          // Set new location.
-          m_location = new_location;
+        // Set position of object to new position.
+        setPosition(p);
+        LM.writeLog(0, "New location (%f,%f)", p.getX(), p.getY());
+        // Set new location.
+        m_location = new_location;
     }
 
     // Get general location of ViewObject on screen.
