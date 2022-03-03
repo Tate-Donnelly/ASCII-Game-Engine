@@ -74,6 +74,11 @@ int main(int argc, char* argv[]) {
         else {
             if (T.doTests()) {
                 WM.setView(df::Box(df::Vector(0, 0), 80, 24));
+                RM.loadSprite("sprites/gamestart-spr.txt", "gamestart");
+                df::Object* start = new df::Object;
+                start->setSprite("gamestart");
+                start->setPosition(df::Vector(40, 12));
+                LM.writeLog("(%f,%f)", start->getPosition().getX(), start->getPosition().getY());
                 GM.run();
             }
             GM.shutDown();

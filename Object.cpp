@@ -74,7 +74,7 @@ namespace df {
 	int Object::eventHandler(const Event* p_e) {
 		if (p_e->getType() == df::KEYBOARD_EVENT) {//testObject moves to the cursor when clicked
 			EventKeyboard* m = (EventKeyboard*)p_e;
-			LM.writeLog(3, "Key %d", m->getKey());
+			LM.writeLog(0, "Key %d", m->getKey());
 			if (m->getKey() == Keyboard::Key::Q && m->getKeyboardAction() == EventKeyboardAction::KEY_DOWN) {
 				GM.setGameOver(true);
 				
@@ -166,7 +166,10 @@ namespace df {
 			return -1;
 		}
 		m_animation.setSprite(p_sprite);
-		setBox(m_animation.getBox());
+		Vector v;
+		Box box = m_animation.getBox();
+		box.setCorner(box.getCorner() - Vector(box.getHorizontal() / 2, box.getVertical() / 2));
+		setBox(box);
 		LM.writeLog(0, "Object::setSprite %f %f", m_animation.getBox().getCorner().getX(),m_animation.getBox().getCorner().getY());
 		return 0;
 	}

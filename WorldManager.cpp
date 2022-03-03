@@ -310,7 +310,8 @@ namespace df {
         // Set to NULL to turn `off' following.
         if (p_new_view_following == NULL) {
             p_view_following = NULL;
-            return 0;
+            LM.writeLog("NULL Object");
+            return -1;
         }
 
         ObjectListIterator* li=new ObjectListIterator(&m_updates);
@@ -318,6 +319,7 @@ namespace df {
             // If found, adjust attribute accordingly and set view position.
             if (li->currentObject()==p_new_view_following) {
                 p_view_following = p_new_view_following;
+             
                 setViewPosition(p_view_following->getPosition());
                 return 0;
             }

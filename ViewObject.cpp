@@ -114,7 +114,8 @@ namespace df {
             y_delta = 0;
             break;
         case CENTER_CENTER:
-            p.setXY(WM.getView().getHorizontal() * 3 / 6, WM.getView().getVertical() * 1 / 2);
+            p.setXY(WM.getView().getHorizontal() * ((float) 3 / 6), WM.getView().getVertical() * ((float) 1 / 2));
+            
             y_delta = 0;
             break;
         case CENTER_RIGHT:
@@ -146,7 +147,8 @@ namespace df {
 
         // Set position of object to new position.
         setPosition(p);
-        LM.writeLog(0, "New location (%f,%f)", p.getX(), p.getY());
+        LM.writeLog(0,"ViewObject view (%f,%f)", WM.getView().getHorizontal(), WM.getView().getVertical());
+        LM.writeLog(0,"New location (%f,%f)", p.getX(), p.getY());
         // Set new location.
         m_location = new_location;
     }

@@ -56,8 +56,8 @@ namespace df {
 		}
 
 		//Determine offset since centered at position
-		int x_offset = getWidth();
-		int y_offset = getHeight();
+		float x_offset = (float)getWidth()/2;
+		float y_offset = (float)getHeight()/2;
 
 		//Draw character by character
 		for (int y = 0; y < m_height; y++) {

@@ -1,38 +1,70 @@
-#pragma once
+#ifndef __DF_VECTOR_H
+#define __DF_VECTOR_H
+
 namespace df {
-	class Vector
-	{
+	//2D Vector class
+	class Vector {
 	private:
-		float m_x; //Horizontal component
-		float m_y; //Vertical component
+		float m_x; //Horizontal
+		float m_y; //Vertical
+
 	public:
-		//Creates a vector with (x,y)
+		//Create Vector with (x,y)
 		Vector(float init_x, float init_y);
 
-		//Default 2d (x,y) is (0,0)
+		// Default (0,0)
 		Vector();
 
-		//Get/set x
+		//Copy constructor
+		Vector(const Vector& v);
+
+		//Assignment
+		Vector& operator=(const Vector& v);
+
+		//Get/Set horizontal
 		void setX(float new_x);
 		float getX() const;
 
-		//Get/set y
+		//Get/Set vertical
 		void setY(float new_y);
 		float getY() const;
 
-		//Sets x and y
+		//Set horizontal and vertical components.
 		void setXY(float new_x, float new_y);
 
-		//return the vector's magnitude
+		//Return magnitude of vector.
 		float getMagnitude() const;
 
-		//Normalize the vector
-		void normalize();
+		//Normalize vector, return self as lval;
+		Vector& normalize();
 
-		//Scale the vector
-		void scale(float s);
+		//Scale vector, return self as lval;
+		Vector& scale(float s);
 
-		//Add two vectors and return their result
+		//Multiply vector with scalar, return new Vector
+		Vector operator*(float s) const;
+
+		//Add two Vectors, return new Vector.
 		Vector operator+(const Vector& other) const;
+
+		//Subtract two Vectors, return new Vector.
+		Vector operator-(const Vector& other) const;
+
+		//Syntactic sugar for scale
+		Vector& operator*=(float s);
+
+		//Add to current vector
+		Vector& operator+=(const Vector& other);
+
+		//Subtract vector from current vector
+		Vector& operator-=(const Vector& other);
+
+		//Compare to vectors for equality
+		bool operator==(const Vector& other);
+
+		//Compare to vectors for inequality2
+		bool operator!=(const Vector& other);
 	};
 }
+
+#endif /*DF_VECTOR_H*/

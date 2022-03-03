@@ -8,8 +8,9 @@ namespace df {
 	void Animation::setSprite(Sprite* p_new_sprite) {
 		m_p_sprite = p_new_sprite;
 		// Create Box around centered Sprite.
-		Vector corner(-1 * (m_p_sprite->getWidth() / 2.0), -1 * (m_p_sprite->getHeight() / 2.0));
-		Box box(corner, m_p_sprite->getWidth(), m_p_sprite->getHeight());
+		/*Vector corner(-1 * ((float)m_p_sprite->getWidth() / 2.0), -1 * ((float)m_p_sprite->getHeight() / 2.0));
+		Box box(corner, (float)m_p_sprite->getWidth(), (float)m_p_sprite->getHeight());*/
+		Box box(Vector(0,0), (float)m_p_sprite->getWidth() - 1, (float)m_p_sprite->getHeight()-1);
 		m_box = box;
 	}
 	//Gets the sprite
@@ -93,7 +94,7 @@ namespace df {
 	// Get Object's bounding box.
 	Box Animation::getBox() const {
 		// If no Sprite, return unit Box centered at (0,0).
-		if (!m_p_sprite) {
+		/*if (!m_p_sprite) {
 			Box box(Vector(-0.5, -0.5), 0.99, 0.99);
 			return box;
 		}
@@ -103,8 +104,8 @@ namespace df {
 		Box box(corner, m_p_sprite->getWidth(), 
 						m_p_sprite->getHeight());
 		LM.writeLog(0,"Box width %f height %f", m_box.getHorizontal(), m_box.getVertical());
-		LM.writeLog(0,"Animation::getBox() %f %f", box.getCorner().getX(), box.getCorner().getY());
+		LM.writeLog(0,"Animation::getBox() %f %f", box.getCorner().getX(), box.getCorner().getY());*/
 		// Return box.
-		return box;
+		return m_box;
 	}
 }

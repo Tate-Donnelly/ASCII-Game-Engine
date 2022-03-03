@@ -61,7 +61,7 @@ namespace df {
 	//Add frame to sprite
 	//Return -1 if frame array full, else 0
 	int Sprite::addFrame(Frame new_frame) {
-		if (m_frame_count == m_max_frame_count) {
+		if (m_frame_count >= m_max_frame_count) {
 			return -1;
 		}
 		else {
